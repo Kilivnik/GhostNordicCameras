@@ -174,9 +174,14 @@ main {
 .glitch {
     position: relative;
     color: white;
-    font-size: 4em;
-    letter-spacing: .5em;
+    font-size: 2em;
+    letter-spacing: .3em;
     animation: glitch-skew 1s infinite linear alternate-reverse;
+
+    @media screen and (min-width: 768px) {
+            font-size: 4em;
+            letter-spacing: .5em;
+        }
 
 
     &::befor {
@@ -295,7 +300,8 @@ main {
     color: rgb(12, 4, 4);
 }
 
-#closeModal {
+#closeModal,
+#closeModal-2 {
     position: absolute;
     top: 20px;
     right: 30px;
