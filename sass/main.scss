@@ -1,15 +1,3 @@
-:root {
-    --m: 4rem;
-
-    --red: #FF6565;
-    --pink: #FF64F9;
-    --purple: #6B5FFF;
-    --blue: #4D8AFF;
-    --green: #5BFF89;
-    --yellow: #FFEE55;
-    --orange: #FF6D1B;
-}
-
 body {
     background-color: #161616;
     color: #F2F2F2;
@@ -89,7 +77,7 @@ nav {
     font-size: 18px;
     font-weight: 400;
 
-    border: calc(0.08 * var(--m)) solid transparent;
+    /* border: calc(0.08 * var(--m)) solid transparent;
     position: relative;
     border-radius: calc(0.7 * var(--m));
     padding: calc(0.5 * var(--m)) calc(1 * var(--m));
@@ -97,10 +85,10 @@ nav {
     background-origin: border-box;
     background-clip: padding-box, border-box, border-box;
     background-size: 200%;
-    animation: animate 2s infinite linear;
+    animation: animate 2s infinite linear; */
 }
 
-.nav__link::before {
+/* .nav__link::before {
     content: '';
     background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
     height: 30%;
@@ -116,9 +104,9 @@ nav {
 .nav__link:hover,
 .nav__link:hover::before {
     animation: animate 0.5s infinite linear;
-}
+} */
 
-@keyframes animate {
+/* @keyframes animate {
     0% {
         background-position: 0
     }
@@ -132,7 +120,7 @@ nav {
     :root {
         --m: 2rem;
     }
-}
+} */
 
 .nav__title {
     text-align: center;
@@ -146,10 +134,101 @@ nav {
 }
 
 main {
-    margin-top: 50px;
+    // margin-top: 50px;
     background-color: #161616;
     text-transform: uppercase;
 }
+
+/* #region main за запитом */
+
+#app {
+    background: rgb(10, 10, 10);
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(10, 10, 10, .6), rgba(0, 0, 0, .9)), repeating-linear-gradient(0, transparent, transparent 2px, black 3px, black 3px),
+        url('../images/road.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+#wrapper {
+    text-align: center;
+}
+
+@mixin glitchCopy {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch {
+    position: relative;
+    color: white;
+    font-size: 4em;
+    letter-spacing: .5em;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+
+
+    &::befor {
+        @include glitchCopy;
+        left: 2px;
+        text-shadow: -2px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    &::after {
+        @include glitchCopy;
+        left: -2px;
+        text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+        animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+}
+
+@keyframes glitch-anim {
+    $steps: 20;
+
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+            transform: skew((random(100) / 100) + deg);
+        }
+    }
+}
+
+// Same deal, just duplicated for ultra randomness.
+@keyframes glitch-anim2 {
+    $steps: 20;
+
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            clip: rect(random(100)+px, 9999px, random(100)+px, 0);
+            transform: skew((random(100) / 100) + deg);
+        }
+    }
+}
+
+// Does the same deal as before, but now only skews. Used for main text.
+@keyframes glitch-skew {
+    $steps: 10;
+
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            transform: skew((random(10) - 5) + deg);
+        }
+    }
+}
+
 
 .hero img {
     width: 100%;
@@ -237,18 +316,18 @@ main {
     margin: 0;
 }
 
-.contact__modal li + li {
+.contact__modal li+li {
     margin-left: 20px;
 }
 
 .card {
     background: #F2F2F2;
     width: 20em;
-        text-align: center;
-        position: relative;
-        /* padding: 0 0 0.5em 0; */
-        -webkit-box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.19);
-        box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.19);
+    text-align: center;
+    position: relative;
+    /* padding: 0 0 0.5em 0; */
+    -webkit-box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.19);
 }
 
 .card .profile__picture {
@@ -275,8 +354,8 @@ main {
 
 .contact h4 {
     color: #161616;
-        font-weight: 300;
-        font-size: 0.9rem;
+    font-weight: 300;
+    font-size: 0.9rem;
     /* margin: 0.5em 0 0 0; */
 }
 
@@ -311,7 +390,7 @@ main {
 }
 
 .contact li svg {
-    fill: #F2F2F2 ;
+    fill: #F2F2F2;
     background-color: #212336;
     border-color: #F2F2F2;
     border-radius: 50%;
@@ -326,4 +405,3 @@ main {
     background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.75)), to(rgba(0, 0, 0, 0)));
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
 }
-
